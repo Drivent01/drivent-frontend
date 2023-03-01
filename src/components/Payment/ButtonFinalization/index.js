@@ -1,6 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import useSaveTicket from '../../hooks/api/useSaveTicket';
+import useSaveTicket from '../../../hooks/api/useSaveTicket';
 
 import { ContainerButton } from './styles';
 
