@@ -5,7 +5,7 @@ import PaymentScreen from '../../../components/Payment/PaymentScreen';
 import TicketScreen from '../../../components/Payment/TicketScreen';
 
 export default function Payment() {
-  const [paymentScreen, setPaymentScreen] = useState(true);
+  const [paymentScreen, setPaymentScreen] = useState(false); //change payment screen
   return (
     <>
       <StyledTypography variant="h4">Ingresso e Pagamento</StyledTypography>
