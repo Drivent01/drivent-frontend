@@ -2,10 +2,11 @@ import React from 'react';
 
 import { ContainerButton } from './styles';
 
-function ButtonSelection({ children, width, height, isSelected }) {
+function ButtonSelection({ title, price, width, height, isSelected }) {
   return (
     <ContainerButton width={width} height={height} isSelected={isSelected}>
-      {children}
+      <p className='title'>{title}</p>
+      <p className='subtitle'>R${price}</p>
     </ContainerButton>
   );
 }
