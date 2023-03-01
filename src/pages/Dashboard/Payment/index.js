@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ButtonFinalization from '../../../components/ButtonFinalization';
 import ButtonSelection from '../../../components/ButtonSelection';
 import HotelModalityButtonSelection from '../../../components/HotelModalityButtonSelection';
-import Subtitle from '../../../components/Subtitle';
+import StyledSubtitle from '../../../components/Subtitle';
 import useTicketType from '../../../hooks/api/useTicketType';
 
 export default function Payment() {
@@ -76,10 +76,6 @@ export default function Payment() {
 
 const StyledTypography = styled(Typography)`
   margin-bottom: 20px!important;
-`;
-
-const StyledSubtitle = styled(Subtitle)`
-  margin-bottom: 17px;
 `;
 
 const Container = styled.div`
