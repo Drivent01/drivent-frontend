@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Subtitle = styled.h4`
+  margin-bottom: 17px;
   font-family: sans-serif !important;
   font-style: normal;
   font-weight: 400;
