@@ -37,8 +37,6 @@ export default function Payment() {
     });
   }
 
-  console.log(selectedTicket);
-
   return (
     <>
       <StyledTypography variant='h4'>Ingresso e Pagamento</StyledTypography>
@@ -67,7 +65,7 @@ export default function Payment() {
       {selectedTicket.concluded && <StyledSubtitle>Fechado! O total ficou em R$ {selectedTicket.totalPrice}. Agora é só confirmar</StyledSubtitle>}
 
       {/* TO DO : Aqui esta o componente do botao */}
-      <ButtonFinalization>
+      <ButtonFinalization reserveData={selectedTicket}>
         <p className='title'> RESERVAR INGRESSO</p>
       </ButtonFinalization>
     </>
