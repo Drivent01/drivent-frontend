@@ -1,10 +1,10 @@
-import ButtonFinalization from './ButtonFinalization';
-import ButtonSelection from './ButtonSelection';
-import StyledSubtitle from '../Subtitle';
+import ButtonFinalization from '../../../../components/Payment/ButtonFinalization';
+import ButtonSelection from '../../../../components/Payment/ButtonSelection';
+import StyledSubtitle from '../../../../components/Subtitle';
 import { useState } from 'react';
 import styled from 'styled-components';
-import HotelModalityButtonSelection from '../HotelModalityButtonSelection';
-import useTicketType from '../../hooks/api/useTicketType';
+import HotelModalityButtonSelection from '../../../../components/HotelModalityButtonSelection';
+import useTicketType from '../../../../hooks/api/useTicketType';
 
 export default function TicketScreen({ setPaymentScreen }) {
   const { ticketType } = useTicketType();

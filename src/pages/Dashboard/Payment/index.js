@@ -1,11 +1,11 @@
 import { Typography } from '@material-ui/core';
 import { useState } from 'react';
 import styled from 'styled-components';
-import PaymentScreen from '../../../components/Payment/PaymentScreen';
-import TicketScreen from '../../../components/Payment/TicketScreen';
+import PaymentScreen from './PaymentScreen';
+import TicketScreen from './TicketScreen';
 
 export default function Payment() {
-  const [paymentScreen, setPaymentScreen] = useState(false); //change payment screen
+  const [paymentScreen, setPaymentScreen] = useState(true); //change payment screen
   return (
     <>
       <StyledTypography variant="h4">Ingresso e Pagamento</StyledTypography>

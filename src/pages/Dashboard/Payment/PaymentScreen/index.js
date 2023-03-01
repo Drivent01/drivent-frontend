@@ -1,6 +1,6 @@
-import StyledSubtitle from '../Subtitle';
-import ButtonSelection from './ButtonSelection';
-import ButtonFinalization from './ButtonFinalization';
+import StyledSubtitle from '../../../../components/Subtitle';
+import ButtonSelection from '../../../../components/Payment/ButtonSelection';
+import ButtonFinalization from '../../../../components/Payment/ButtonFinalization';
 import { useEffect } from 'react';
 
 export default function PaymentScreen(props) {
