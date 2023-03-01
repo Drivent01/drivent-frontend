@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import ButtonFinalization from '../../../components/ButtonFinalization';
 import ButtonSelection from '../../../components/ButtonSelection';
-import Subtitle from '../../../components/Subtitle';
+import StyledSubtitle from '../../../components/Subtitle';
 
 export default function Payment() {
   return (
