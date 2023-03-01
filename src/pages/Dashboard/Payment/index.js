@@ -26,10 +26,6 @@ const StyledTypography = styled(Typography)`
   margin-bottom: 20px!important;
 `;
 
-const StyledSubtitle = styled(Subtitle)`
-  margin-bottom: 17px;
-`;
-
 const Container = styled.div`
   display: flex;
   gap: 24px;
