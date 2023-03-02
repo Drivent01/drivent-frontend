@@ -1,28 +1,10 @@
 import React from 'react';
-import { toast } from 'react-toastify';
-import useSaveTicket from '../../../hooks/api/useSaveTicket';
 
 import { ContainerButton } from './styles';
 
-function ButtonFinalization({ children, reserveData }) {
-  const { saveTicket } = useSaveTicket();
-
-  async function reserve() {
-    if (!reserveData.concluded) {
-      toast('Nenhuma modalidade selecionada!');
-      return;
-    }
-
-    try {
-      const ticketData = await saveTicket({ ticketTypeId: reserveData.id });
-      toast('Informações salvas com sucesso!');
-    } catch (err) {
-      toast('Não foi possível salvar suas informações!');
-    }
-  }
-
+function ButtonFinalization({ children }) {
   return (
-    <ContainerButton onClick={reserve}>
+    <ContainerButton>
       {children}
     </ContainerButton>
   );
