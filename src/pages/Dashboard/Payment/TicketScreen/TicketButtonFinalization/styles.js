@@ -8,7 +8,7 @@ export const ContainerButton = styled.button`
   width: 167px;
   height: 37px;
 
-
+  cursor: pointer;
   background: #E0E0E0;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -19,5 +19,4 @@ export const ContainerButton = styled.button`
     line-height: 16px;
     color: #000000;
   }
-
 `;
