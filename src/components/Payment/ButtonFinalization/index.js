@@ -15,12 +15,10 @@ function ButtonFinalization({ children, reserveData }) {
 
     try {
       const ticketData = await saveTicket({ ticketTypeId: reserveData.id });
-      console.log(ticketData);
       toast('Informações salvas com sucesso!');
     } catch (err) {
       toast('Não foi possível salvar suas informações!');
     }
-    console.log(reserveData);
   }
 
   return (
