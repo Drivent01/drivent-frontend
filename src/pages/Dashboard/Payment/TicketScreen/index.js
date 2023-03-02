@@ -1,4 +1,4 @@
-import ButtonFinalization from '../../../../components/Payment/ButtonFinalization';
+import TicketButtonFinalization from './TicketButtonFinalization';
 import ButtonSelection from '../../../../components/Payment/ButtonSelection';
 import StyledSubtitle from '../../../../components/Subtitle';
 import { useState } from 'react';
@@ -74,6 +74,8 @@ export default function TicketScreen({ setPaymentScreen }) {
                   />
                 );
               }
+
+              return null;
             })}
           </Container>
         </>
@@ -84,9 +86,9 @@ export default function TicketScreen({ setPaymentScreen }) {
       )}
 
       {/* TO DO : Aqui esta o componente do botao */}
-      <ButtonFinalization reserveData={selectedTicket}>
+      <TicketButtonFinalization reserveData={selectedTicket}>
         <p className="title"> RESERVAR INGRESSO</p>
-      </ButtonFinalization>
+      </TicketButtonFinalization>
     </>
   );
 }
