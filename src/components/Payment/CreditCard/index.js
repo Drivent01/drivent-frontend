@@ -92,7 +92,7 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
           <input
             type="tel"
             name="expiry"
-            placeholder="Valid Thru"
+            placeholder="Valid Thru (ex: 01/21)"
             onChange={handleInputChange}
             onFocus={handleInputFocus}
             maxLength="5"
