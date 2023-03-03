@@ -83,7 +83,7 @@ export default function TicketScreen({ setPaymentScreen }) {
         <StyledSubtitle>Fechado! O total ficou em R$ {selectedTicket.totalPrice}. Agora é só confirmar</StyledSubtitle>
       )}
 
-      <TicketButtonFinalization reserveData={selectedTicket}>
+      <TicketButtonFinalization reserveData={selectedTicket} setPaymentScreen={setPaymentScreen}>
         <p className="title"> RESERVAR INGRESSO</p>
       </TicketButtonFinalization>
     </>
