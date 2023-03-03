@@ -22,7 +22,11 @@ export default function Payment() {
   return (
     <>
       <StyledTypography variant="h4">Ingresso e Pagamento</StyledTypography>
-      {paymentScreen ? <PaymentScreen /> : <TicketScreen setPaymentScreen={setPaymentScreen} />}
+      {paymentScreen ? (
+        <PaymentScreen />
+      ) : (
+        <TicketScreen setPaymentScreen={setPaymentScreen} />
+      )}
     </>
   );
 }

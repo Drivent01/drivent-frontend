@@ -4,17 +4,17 @@ import 'react-credit-cards/es/styles-compiled.css';
 import { Container, CardCredentials } from './styles';
 import ButtonFinalization from '../ButtonFinalization';
 import usePayment from '../../../hooks/api/useSavePayment';
-import useTicket from '../../../hooks/api/useTicket';
+import { toast } from 'react-toastify';
 
-export default function PaymentForm({ setConfirmationScreen }) {
+export default function PaymentForm({ setConfirmationScreen, ticketId }) {
   const { savePayment } = usePayment();
-  const { ticket } = useTicket();
   const [creditCard, setCreditCard] = useState({
     cvc: '',
     expiry: '',
     focus: '',
     name: '',
     number: '',
+    cardIssuer: '',
   });
   const handleInputFocus = (e) => {
     setCreditCard({ ...creditCard, focus: e.target.name });
@@ -25,10 +25,25 @@ export default function PaymentForm({ setConfirmationScreen }) {
     setCreditCard({ ...creditCard, [name]: value });
   };
 
-  const handleFinalizationButton = (e) => {
+  const cardSanitization = (type, isValid) => {
+    setCreditCard({ ...creditCard, cardIssuer: type.issuer });
+  };
+
+  const handleFinalizationButton = async(e) => {
     e.preventDefault();
-    savePayment({ cardData: creditCard, ticketId: 1 });
-    console.log('Finalizar pagamento');
+    try {
+      const cardData = {
+        issuer: creditCard.cardIssuer,
+        number: creditCard.number,
+        name: creditCard.name,
+        cvv: creditCard.cvc,
+        expirationDate: creditCard.expiry,
+      };
+      await savePayment({ cardData, ticketId });
+      toast('Informações salvas com sucesso!');
+    } catch (err) {
+      toast('Não foi possível fazer o pagamento!');
+    }
   };
 
   return (
@@ -40,6 +55,7 @@ export default function PaymentForm({ setConfirmationScreen }) {
           focused={creditCard.focus}
           name={creditCard.name}
           number={creditCard.number}
+          callback={cardSanitization}
         />
         <CardCredentials>
           <input
@@ -60,9 +76,9 @@ export default function PaymentForm({ setConfirmationScreen }) {
           />
         </CardCredentials>
       </div>
-      <ButtonFinalization onClick={handleFinalizationButton}>
+      <button onClick={handleFinalizationButton}>
         <p className="title"> FINALIZAR PAGAMENTO</p>
-      </ButtonFinalization>
+      </button>
     </Container>
   );
 }

@@ -73,8 +73,6 @@ export default function TicketScreen({ setPaymentScreen }) {
                   />
                 );
               }
-
-              return null;
             })}
           </Container>
         </>
