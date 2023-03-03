@@ -51,6 +51,7 @@ export default function TicketScreen({ setPaymentScreen }) {
               setSelectedTicket={setSelectedTicket}
               includesHotel={item.includesHotel}
               setMoreOptions={setMoreOptions}
+              clickable={true}
             />
           ))}
       </Container>
