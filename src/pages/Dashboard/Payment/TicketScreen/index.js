@@ -58,7 +58,6 @@ export default function TicketScreen({ setPaymentScreen }) {
       {moreOptions && (
         <>
           <StyledSubtitle>Ótimo! Agora escolha sua modalidade de hospedagem</StyledSubtitle>
-
           <Container>
             {ticketType.map((item, index) => {
               if (item.name === selectedTicket.title) {
@@ -74,8 +73,6 @@ export default function TicketScreen({ setPaymentScreen }) {
                   />
                 );
               }
-
-              return null;
             })}
           </Container>
         </>
@@ -85,7 +82,6 @@ export default function TicketScreen({ setPaymentScreen }) {
         <StyledSubtitle>Fechado! O total ficou em R$ {selectedTicket.totalPrice}. Agora é só confirmar</StyledSubtitle>
       )}
 
-      {/* TO DO : Aqui esta o componente do botao */}
       <TicketButtonFinalization reserveData={selectedTicket}>
         <p className="title"> RESERVAR INGRESSO</p>
       </TicketButtonFinalization>

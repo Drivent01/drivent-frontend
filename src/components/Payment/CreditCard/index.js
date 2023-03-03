@@ -2,31 +2,60 @@ import { useState } from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import { Container, CardCredentials } from './styles';
-import ButtonFinalization from '../ButtonFinalization';
+import usePayment from '../../../hooks/api/useSavePayment';
+import { toast } from 'react-toastify';
 
-export default function PaymentForm(props) {
-  const [state, setState] = useState({
+export default function PaymentForm({ setConfirmationScreen, ticketId }) {
+  const { savePayment } = usePayment();
+  const [creditCard, setCreditCard] = useState({
     cvc: '',
     expiry: '',
     focus: '',
     name: '',
     number: '',
+    cardIssuer: '',
   });
-  console.log(state);
   const handleInputFocus = (e) => {
-    setState({ ...state, focus: e.target.name });
+    setCreditCard({ ...creditCard, focus: e.target.name });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log({ ...state, [name]: value });
-    setState({ ...state, [name]: value });
+    setCreditCard({ ...creditCard, [name]: value });
+  };
+
+  const cardSanitization = (type, isValid) => {
+    setCreditCard({ ...creditCard, cardIssuer: type.issuer });
+  };
+
+  const handleFinalizationButton = async(e) => {
+    e.preventDefault();
+    try {
+      const cardData = {
+        issuer: creditCard.cardIssuer,
+        number: creditCard.number,
+        name: creditCard.name,
+        cvv: creditCard.cvc,
+        expirationDate: creditCard.expiry,
+      };
+      await savePayment({ cardData, ticketId });
+      toast('Informações salvas com sucesso!');
+    } catch (err) {
+      toast('Não foi possível fazer o pagamento!');
+    }
   };
 
   return (
     <Container>
       <div id="PaymentForm">
-        <Cards cvc={state.cvc} expiry={state.expiry} focused={state.focus} name={state.name} number={state.number} />
+        <Cards
+          cvc={creditCard.cvc}
+          expiry={creditCard.expiry}
+          focused={creditCard.focus}
+          name={creditCard.name}
+          number={creditCard.number}
+          callback={cardSanitization}
+        />
         <CardCredentials>
           <input
             type="tel"
@@ -46,9 +75,9 @@ export default function PaymentForm(props) {
           />
         </CardCredentials>
       </div>
-      <ButtonFinalization>
+      <button onClick={handleFinalizationButton}>
         <p className="title"> FINALIZAR PAGAMENTO</p>
-      </ButtonFinalization>
+      </button>
     </Container>
   );
 }
