@@ -83,17 +83,19 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
               placeholder="Card Number"
               onChange={handleInputChange}
               onFocus={handleInputFocus}
+              maxLength="19"
             />
             <label>E.g: 49..., 51..., 36..., 37...</label>
           </div>
-          <input type="text" name="name" placeholder="Name" onChange={handleInputChange} onFocus={handleInputFocus} />
-          <input type="tel" name="cvc" placeholder="CVC" onChange={handleInputChange} onFocus={handleInputFocus} />
+          <input type="text" name="name" placeholder="Name" onChange={handleInputChange} onFocus={handleInputFocus} maxLength="40"/>
+          <input type="tel" name="cvc" placeholder="CVC" onChange={handleInputChange} onFocus={handleInputFocus} maxLength="3"/>
           <input
             type="tel"
             name="expiry"
             placeholder="Valid Thru"
             onChange={handleInputChange}
             onFocus={handleInputFocus}
+            maxLength="5"
           />
         </CardCredentials>
       </div>
