@@ -15,6 +15,7 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
     number: '',
     cardIssuer: '',
   });
+  const [validCardNumber, setValidCardNumber] = useState(false);
   const handleInputFocus = (e) => {
     setCreditCard({ ...creditCard, focus: e.target.name });
   };
@@ -24,13 +25,22 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
     setCreditCard({ ...creditCard, [name]: value });
   };
 
-  const cardSanitization = (type, isValid) => {
+  const cardNumberSanitization = (type, isValid) => {
+    setValidCardNumber(isValid);
     setCreditCard({ ...creditCard, cardIssuer: type.issuer });
   };
-
-  const handleFinalizationButton = async(e) => {
+  //eslint-disable-next-line
+  const handleFinalizationButton = async (e) => {
     e.preventDefault();
     try {
+      const credentialsSchema =
+        validCardNumber &&
+        (creditCard.cvc.length === 3 || creditCard.cvc.length === 4) &&
+        creditCard.expiry.length === 5 &&
+        creditCard.name.length >= 3;
+      if (!credentialsSchema) {
+        throw new Error('Dados inválidos!');
+      }
       const cardData = {
         issuer: creditCard.cardIssuer,
         number: creditCard.number,
@@ -40,7 +50,14 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
       };
       await savePayment({ cardData, ticketId });
       toast('Informações salvas com sucesso!');
+      setTimeout(() => {
+        setConfirmationScreen(true);
+      }, 1500);
     } catch (err) {
+      if (err.message === 'Dados inválidos!') {
+        toast(err.message);
+        return;
+      }
       toast('Não foi possível fazer o pagamento!');
     }
   };
@@ -48,22 +65,27 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
   return (
     <Container>
       <div id="PaymentForm">
-        <Cards
-          cvc={creditCard.cvc}
-          expiry={creditCard.expiry}
-          focused={creditCard.focus}
-          name={creditCard.name}
-          number={creditCard.number}
-          callback={cardSanitization}
-        />
-        <CardCredentials>
-          <input
-            type="tel"
-            name="number"
-            placeholder="Card Number"
-            onChange={handleInputChange}
-            onFocus={handleInputFocus}
+        <div className="card-container">
+          <Cards
+            cvc={creditCard.cvc}
+            expiry={creditCard.expiry}
+            focused={creditCard.focus}
+            name={creditCard.name}
+            number={creditCard.number}
+            callback={cardNumberSanitization}
           />
+        </div>
+        <CardCredentials>
+          <div className="card-number-pair">
+            <input
+              type="tel"
+              name="number"
+              placeholder="Card Number"
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+            />
+            <label>E.g: 49..., 51..., 36..., 37...</label>
+          </div>
           <input type="text" name="name" placeholder="Name" onChange={handleInputChange} onFocus={handleInputFocus} />
           <input type="tel" name="cvc" placeholder="CVC" onChange={handleInputChange} onFocus={handleInputFocus} />
           <input
