@@ -3,30 +3,44 @@ import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import { Container, CardCredentials } from './styles';
 import ButtonFinalization from '../ButtonFinalization';
+import usePayment from '../../../hooks/api/useSavePayment';
+import useTicket from '../../../hooks/api/useTicket';
 
-export default function PaymentForm(props) {
-  const [state, setState] = useState({
+export default function PaymentForm({ setConfirmationScreen }) {
+  const { savePayment } = usePayment();
+  const { ticket } = useTicket();
+  const [creditCard, setCreditCard] = useState({
     cvc: '',
     expiry: '',
     focus: '',
     name: '',
     number: '',
   });
-  console.log(state);
   const handleInputFocus = (e) => {
-    setState({ ...state, focus: e.target.name });
+    setCreditCard({ ...creditCard, focus: e.target.name });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log({ ...state, [name]: value });
-    setState({ ...state, [name]: value });
+    setCreditCard({ ...creditCard, [name]: value });
+  };
+
+  const handleFinalizationButton = (e) => {
+    e.preventDefault();
+    savePayment({ cardData: creditCard, ticketId: 1 });
+    console.log('Finalizar pagamento');
   };
 
   return (
     <Container>
       <div id="PaymentForm">
-        <Cards cvc={state.cvc} expiry={state.expiry} focused={state.focus} name={state.name} number={state.number} />
+        <Cards
+          cvc={creditCard.cvc}
+          expiry={creditCard.expiry}
+          focused={creditCard.focus}
+          name={creditCard.name}
+          number={creditCard.number}
+        />
         <CardCredentials>
           <input
             type="tel"
@@ -46,7 +60,7 @@ export default function PaymentForm(props) {
           />
         </CardCredentials>
       </div>
-      <ButtonFinalization>
+      <ButtonFinalization onClick={handleFinalizationButton}>
         <p className="title"> FINALIZAR PAGAMENTO</p>
       </ButtonFinalization>
     </Container>
