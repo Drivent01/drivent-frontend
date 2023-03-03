@@ -15,7 +15,7 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
     number: '',
     cardIssuer: '',
   });
-  const [validCredentials, setValidCredentials] = useState(false);
+  const [validCardNumber, setValidCardNumber] = useState(false);
   const handleInputFocus = (e) => {
     setCreditCard({ ...creditCard, focus: e.target.name });
   };
@@ -25,27 +25,20 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
     setCreditCard({ ...creditCard, [name]: value });
   };
 
-  const cardSanitization = (type, isValid) => {
-    if (creditCard.number.length > type.maxLength) {
-      setValidCredentials(false);
-    } else if (!isValid) {
-      setValidCredentials(false);
-    } else if (creditCard.name.length < 3) {
-      setValidCredentials(false);
-    } else if (creditCard.cvc.length < 3) {
-      setValidCredentials(false);
-    } else if (creditCard.expiry.length < 4) {
-      setValidCredentials(false);
-    } else {
-      setValidCredentials(true);
-    }
+  const cardNumberSanitization = (type, isValid) => {
+    setValidCardNumber(isValid);
     setCreditCard({ ...creditCard, cardIssuer: type.issuer });
   };
   //eslint-disable-next-line
   const handleFinalizationButton = async (e) => {
     e.preventDefault();
     try {
-      if (!validCredentials) {
+      const credentialsSchema =
+        validCardNumber &&
+        (creditCard.cvc.length === 3 || creditCard.cvc.length === 4) &&
+        creditCard.expiry.length === 5 &&
+        creditCard.name.length >= 3;
+      if (!credentialsSchema) {
         throw new Error('Dados inválidos!');
       }
       const cardData = {
@@ -79,7 +72,7 @@ export default function PaymentForm({ setConfirmationScreen, ticketId }) {
             focused={creditCard.focus}
             name={creditCard.name}
             number={creditCard.number}
-            callback={cardSanitization}
+            callback={cardNumberSanitization}
           />
         </div>
         <CardCredentials>
