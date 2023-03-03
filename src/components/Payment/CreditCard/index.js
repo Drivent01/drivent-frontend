@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import { Container, CardCredentials } from './styles';
-import ButtonFinalization from '../ButtonFinalization';
 import usePayment from '../../../hooks/api/useSavePayment';
 import { toast } from 'react-toastify';
 
