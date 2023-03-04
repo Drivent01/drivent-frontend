@@ -1,0 +1,62 @@
+import styled from 'styled-components';
+import { useState } from 'react';
+import StyledSubtitle from '../../../../components/Subtitle';
+import ButtonSelection from '../../../../components/Payment/ButtonSelection';
+
+export const HotelModality = ({ typesWithHotel, setShowConfirmation, setTicketModality }) => {
+  const [selections, setSelections] = useState(typesWithHotel.map(_ => false));
+
+  const setSelected = index => {
+    setSelections(selections.map((_, i) => index === i));
+  };
+
+  const updateButtonText = price => {
+    if (price === 250) {
+      return {
+        name: 'Com Hotel',
+        price: '+ R$ 350'
+      };
+    } else {
+      return {
+        name: 'Sem Hotel',
+        price: '+ R$ 0'
+      };
+    }
+  };
+
+  const clickHandler = (e, ticket) => {
+    e.preventDefault();
+
+    setShowConfirmation(true);
+    setTicketModality(ticket);
+  };
+
+  return (
+    <>
+      <StyledSubtitle>Ótimo! Agora escolha sua modalidade de hospedagem</StyledSubtitle>
+      <Container>
+        {typesWithHotel.map((ticket, index) => {
+          return (
+            <ButtonSelection
+              key={ticket.id}
+              id={ticket.id}
+              title={updateButtonText(ticket.price).name}
+              price={updateButtonText(ticket.price).price}
+              isSelected={selections[index]}
+              onClick={(e) => {
+                setSelected(index);
+                clickHandler(e, ticket);
+              }}
+            />
+          );
+        })}
+      </Container>
+    </>
+  );
+};
+
+const Container = styled.div`
+  display: flex;
+  gap: 24px;
+  margin-bottom: 44px;
+`;
