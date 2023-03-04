@@ -7,7 +7,7 @@ import PaymentScreen from './PaymentScreen';
 import TicketScreen from './TicketScreen';
 
 export default function Payment() {
-  const [paymentScreen, setPaymentScreen] = useState(true);
+  const [paymentScreen, setPaymentScreen] = useState(false);
   const { enrollment } = useEnrollment();
 
   if (!enrollment) {
