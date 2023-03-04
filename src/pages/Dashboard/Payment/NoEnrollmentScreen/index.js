@@ -4,16 +4,17 @@ import styled from 'styled-components';
 export default function NoEnrollmentScreen() {
   return (
     <TextContainer>
-      <StyledTypography variant="alignCenter">
+      <Text>
         Você precisa completar sua inscrição antes de prosseguir pra escolha do ingresso
-      </StyledTypography>
+      </Text>
     </TextContainer>
   );
 }
 
-const StyledTypography = styled(Typography)`
+const Text = styled.p`
   margin-bottom: 20px !important;
   width: 400px;
+  text-align: center;
 `;
 
 const TextContainer = styled.div`
