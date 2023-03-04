@@ -11,7 +11,7 @@ export const HotelModality = ({ typesWithHotel, setShowConfirmation, setTicketMo
   };
 
   const updateButtonText = price => {
-    if (price === 250) {
+    if (price === 600) {
       return {
         name: 'Com Hotel',
         price: '350'
