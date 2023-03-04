@@ -14,12 +14,12 @@ export const HotelModality = ({ typesWithHotel, setShowConfirmation, setTicketMo
     if (price === 250) {
       return {
         name: 'Com Hotel',
-        price: '+ R$ 350'
+        price: '350'
       };
     } else {
       return {
         name: 'Sem Hotel',
-        price: '+ R$ 0'
+        price: '0'
       };
     }
   };
@@ -41,7 +41,7 @@ export const HotelModality = ({ typesWithHotel, setShowConfirmation, setTicketMo
               key={ticket.id}
               id={ticket.id}
               title={updateButtonText(ticket.price).name}
-              price={updateButtonText(ticket.price).price}
+              price={`R$ + ${updateButtonText(ticket.price).price}`}
               isSelected={selections[index]}
               onClick={(e) => {
                 setSelected(index);
