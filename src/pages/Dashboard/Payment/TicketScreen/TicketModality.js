@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { useState } from 'react';
 import StyledSubtitle from '../../../../components/Subtitle';
 import ButtonSelection from '../../../../components/Payment/ButtonSelection';
-import { useState } from 'react';
+import { Container } from '../../../../components/Payment/ModalityContainer/Container';
 
 export const TicketModality = ({ typesWithoutHotel, setShowHotels, setShowConfirmation, setTicketModality }) => {
   const [selections, setSelections] = useState(typesWithoutHotel.map(_ => false));
@@ -51,9 +51,3 @@ export const TicketModality = ({ typesWithoutHotel, setShowHotels, setShowConfir
     </>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  gap: 24px;
-  margin-bottom: 44px;
-`;
