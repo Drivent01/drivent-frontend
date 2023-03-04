@@ -7,7 +7,7 @@ import { HotelModality } from './HotelModality';
 import ButtonFinalization from '../../../../components/Payment/ButtonFinalization';
 import StyledSubtitle from '../../../../components/Subtitle';
 
-export const Modalities = ({ types }) => {
+export const Modalities = ({ types, setPaymentScreen }) => {
   const [showHotels, setShowHotels] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [ticketModality, setTicketModality] = useState(null);
@@ -35,6 +35,7 @@ export const Modalities = ({ types }) => {
 
     try {
       await saveTicket({ ticketTypeId: ticketModality.id });
+      setPaymentScreen(true);
     } catch (err) {
       toast('Não foi possível salvar sua escolha!');
       return;

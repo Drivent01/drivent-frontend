@@ -17,5 +17,5 @@ export default function TicketScreen({ setPaymentScreen }) {
     return <StyledSubtitle>Os ingressos do envento ainda não estão disponíveis</StyledSubtitle>;
   }
 
-  return <Modalities types={ticketType} />;
+  return <Modalities types={ticketType} setPaymentScreen={setPaymentScreen} />;
 }
