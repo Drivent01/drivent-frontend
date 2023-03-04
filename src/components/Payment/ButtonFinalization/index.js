@@ -2,10 +2,10 @@ import React from 'react';
 
 import { ContainerButton } from './styles';
 
-function ButtonFinalization({ children }) {
+function ButtonFinalization(props) {
   return (
-    <ContainerButton>
-      {children}
+    <ContainerButton {...props}>
+      {props.children}
     </ContainerButton>
   );
 }
