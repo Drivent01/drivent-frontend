@@ -2,20 +2,11 @@ import React from 'react';
 
 import { ContainerButton } from './styles';
 
-function ButtonSelection({ id, title, price, width, height, isSelected, setSelectedTicket, includesHotel, setMoreOptions }) {
-  function selectTicket() {
-    if (!includesHotel) {
-      setMoreOptions(false);
-      setSelectedTicket({ id, title, totalPrice: price, concluded: true });
-    }
-    else {
-      setMoreOptions(true);
-      setSelectedTicket({ id, title, price });
-    }
-  }
+function ButtonSelection(props) {
+  const { title, price } = props;
 
   return (
-    <ContainerButton width={width} height={height} isSelected={isSelected} onClick={selectTicket}>
+    <ContainerButton {...props}>
       <p className='title'>{title}</p>
       <p className='subtitle'>R$ {price}</p>
     </ContainerButton>
