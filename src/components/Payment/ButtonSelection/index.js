@@ -8,7 +8,7 @@ function ButtonSelection(props) {
   return (
     <ContainerButton {...props}>
       <p className='title'>{title}</p>
-      <p className='subtitle'>R$ {price}</p>
+      <p className='subtitle'>{price}</p>
     </ContainerButton>
   );
 }

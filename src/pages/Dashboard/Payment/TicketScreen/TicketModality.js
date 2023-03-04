@@ -38,7 +38,7 @@ export const TicketModality = ({ typesWithoutHotel, setShowHotels, setShowConfir
               key={ticket.id}
               id={ticket.id}
               title={ticket.name}
-              price={ticket.price}
+              price={`R$ ${ticket.price}`}
               isSelected={selections[index]}
               onClick={(e) => {
                 setSelected(index);
