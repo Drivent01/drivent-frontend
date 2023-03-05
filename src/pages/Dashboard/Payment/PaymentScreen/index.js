@@ -36,11 +36,11 @@ export default function PaymentScreen(props) {
           <StyledSubtitle>Ingresso escolhido</StyledSubtitle>
           <ButtonSelection
             title={parseTicketTypeString(ticket.TicketType)}
-            price={ticket.TicketType.price}
+            price={'R$ ' + ticket.TicketType.price}
             isSelected={true}
             width={'290px'}
             height={'108px'}
-            clickable={false}
+            disabled={true}
           />
         </TicketSummary>
         <PaymentSection>

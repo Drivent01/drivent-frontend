@@ -9,14 +9,13 @@ import TicketScreen from './TicketScreen';
 
 export default function Payment() {
   const [paymentScreen, setPaymentScreen] = useState(false);
-  const { ticket } = useTicket();
   const { enrollment } = useEnrollment();
 
-  useEffect(() => {
-    if (ticket) {
-      setPaymentScreen(true);
-    }
-  }, [ticket]);
+  // useEffect(() => {
+  //   if (ticket) {
+  //     setPaymentScreen(true);
+  //   }
+  // }, [ticket]);
 
   if (!enrollment) {
     return (
