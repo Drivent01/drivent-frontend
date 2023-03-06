@@ -6,7 +6,7 @@ import ConfirmationSection from '../../../../components/Payment/CreditCard/Confi
 import useTicket from '../../../../hooks/api/useTicket';
 import { PaymentSection, TicketSummary } from './styles';
 
-export default function PaymentScreen(props) {
+export default function PaymentScreen() {
   const [confirmationScreen, setConfirmationScreen] = useState(false);
   const { ticket, ticketLoading } = useTicket();
 
@@ -25,6 +25,25 @@ export default function PaymentScreen(props) {
     return (
       <>
         <p>YOU DON'T HAVE A TICKET YET</p>
+      </>
+    );
+  }
+
+  if (ticket?.status === 'PAID') {
+    return (
+      <>
+        <TicketSummary>
+          <StyledSubtitle>Ingresso escolhido</StyledSubtitle>
+          <ButtonSelection
+            title={parseTicketTypeString(ticket.TicketType)}
+            price={'R$ ' + ticket.TicketType.price}
+            isSelected={true}
+            width={'290px'}
+            height={'108px'}
+            disabled={true}
+          />
+        </TicketSummary>
+        <ConfirmationSection />
       </>
     );
   }
