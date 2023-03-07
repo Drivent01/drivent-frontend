@@ -1,3 +1,11 @@
+import HotelCard from '../../../components/Hotel/HotelCard';
+
 export default function Hotel() {
-  return 'Hotel: Em breve!';
+  return (
+    <>
+      <p>Hotel: Em breve</p>
+
+      <HotelCard />
+    </>
+  );
 }
