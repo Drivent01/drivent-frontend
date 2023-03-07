@@ -3,7 +3,7 @@ import StyledSubtitle from '../../../../components/Subtitle';
 import ButtonSelection from '../../../../components/Payment/ButtonSelection';
 import { Container } from '../../../../components/Payment/ModalityContainer/Container';
 
-export const TicketModality = ({ typesWithoutHotel, setShowHotels, setShowConfirmation, setTicketModality }) => {
+export const TicketModality = ({ typesWithoutHotel, setShowHotels, setShowConfirmation, ticketModality, setTicketModality }) => {
   const [selections, setSelections] = useState(typesWithoutHotel.map(_ => false));
 
   const setSelected = index => {
@@ -22,8 +22,12 @@ export const TicketModality = ({ typesWithoutHotel, setShowHotels, setShowConfir
 
     if (ticket.name === 'Presencial') {
       setShowHotels(true);
-      setShowConfirmation(false);
-      setTicketModality(null);
+
+      if (ticketModality?.name !== 'Presencial') {
+        setShowConfirmation(false);
+        setTicketModality(null);
+      }
+
       return;
     }
   };
