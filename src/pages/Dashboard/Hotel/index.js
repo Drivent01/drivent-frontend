@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import AlertInfoScreen from '../../../components/AlertInfoScreen';
 import UserContext from '../../../contexts/UserContext';
-
 import { getTicket } from '../../../services/ticketApi';
 
 import { Title } from './styles';
@@ -10,11 +9,11 @@ export default function Hotel() {
   const { userData } = useContext(UserContext);
   const [ticketsByUserId, setTicketsByUserId] = useState({});
 
-  useEffect(async() => {
+  useEffect(async () => {
     await handleGetTicket();
   }, []);
 
-  const handleGetTicket = async() => {
+  const handleGetTicket = async () => {
     const userDataTicket = await getTicket(userData.token);
     setTicketsByUserId(userDataTicket);
   };
@@ -31,7 +30,16 @@ export default function Hotel() {
       }
 
       {ticketsByUserId?.status === 'PAID' &&
-        <p>Hotel : Em Breve</p>
+        <>
+          {ticketsByUserId?.TicketType.name === 'Online' ?
+            <AlertInfoScreen>
+              Sua modalidade de ingresso não inclui hospedagem <br />
+              Prossiga para a escolha de atividades
+            </AlertInfoScreen>
+            :
+            <p>Hotel : Em Breve</p>
+          }
+        </>
       }
     </>
   );
