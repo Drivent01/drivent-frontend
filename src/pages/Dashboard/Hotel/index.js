@@ -31,7 +31,9 @@ export default function Hotel() {
       }
 
       {ticketsByUserId?.status === 'PAID' &&
-        <p>Hotel : Em Breve</p>
+        <>
+          <p>Hotel : Em Breve</p>
+        </>
       }
     </>
   );
