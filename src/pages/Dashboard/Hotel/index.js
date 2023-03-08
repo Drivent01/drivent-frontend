@@ -1,6 +1,5 @@
 import AlertInfoScreen from '../../../components/AlertInfoScreen';
 import useTicket from '../../../hooks/api/useTicket';
-
 import { Title } from './styles';
 
 export default function Hotel() {
