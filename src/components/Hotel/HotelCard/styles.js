@@ -9,6 +9,7 @@ export const Container = styled.div`
 
   cursor: pointer;
 
+  margin-bottom: ${({ marginBottom }) => marginBottom ? marginBottom : '20px'};
   background-color: ${({ isSelected }) => isSelected ? '#FFEED2' : '#EBEBEB'};
 
   img {
