@@ -48,6 +48,7 @@ export const Modalities = ({ types, setPaymentScreen }) => {
         typesWithoutHotel={typesWithoutHotel}
         setShowHotels={setShowHotels}
         setShowConfirmation={setShowConfirmation}
+        ticketModality={ticketModality}
         setTicketModality={setTicketModality}
       />
       {showHotels &&
