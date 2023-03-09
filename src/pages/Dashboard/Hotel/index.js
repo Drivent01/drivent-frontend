@@ -1,6 +1,6 @@
 import AlertInfoScreen from '../../../components/AlertInfoScreen';
 import useTicket from '../../../hooks/api/useTicket';
-import Booking from './HotelSection/booking';
+import HotelMainScreen from './HotelSection';
 
 export default function Hotel({ setShowBooking }) {
   const { ticket } = useTicket();
@@ -18,7 +18,7 @@ export default function Hotel({ setShowBooking }) {
       )}
 
       {ticket?.status === 'PAID' && ticket?.includesHotel && <>
-        <Booking />
+        <HotelMainScreen />
       </>}
     </>
   );

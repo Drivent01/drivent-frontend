@@ -1,5 +1,5 @@
-import useHotelsWithRooms from "../../../../hooks/api/useHotels";
-import Booking from "./booking";
+import useHotelsWithRooms from '../../../../hooks/api/useHotels';
+import Booking from './booking';
 
 export default function HotelMainScreen(props) {
   const { hotelList, hotelListLoading, hotelListError } = useHotelsWithRooms();
@@ -10,7 +10,5 @@ export default function HotelMainScreen(props) {
     return <div>error</div>;
   }
 
-  return (<>
-    {<Booking hotelList={hotelList}/>}
-  </>);
+  return <>{<Booking hotelList={hotelList} />}</>;
 }

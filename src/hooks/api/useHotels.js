@@ -3,7 +3,7 @@ import useToken from '../useToken';
 
 import * as hotelsApi from '../../services/hotelsApi';
 
-export default function useListHotels() {
+export function useListHotels() {
   const token = useToken();
   
   const {
@@ -19,7 +19,7 @@ export default function useListHotels() {
   };
 }
 
-export default function useHotelById() {
+export function useHotelById() {
   const token = useToken();
   
   const {
