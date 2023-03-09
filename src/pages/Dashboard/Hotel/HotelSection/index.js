@@ -1,14 +1,21 @@
 import useHotelsWithRooms from '../../../../hooks/api/useHotels';
 import Booking from './booking';
+import StyledSubtitle from '../../../../components/Subtitle';
 
-export default function HotelMainScreen(props) {
-  const { hotelList, hotelListLoading, hotelListError } = useHotelsWithRooms();
+export default function HotelMainScreen() {
+  const { hotelsWithRooms, hotelsWithRoomsLoading, hotelsWithRoomsError } = useHotelsWithRooms();
 
-  if (hotelListLoading) {
-    return <div>loading</div>;
-  } else if (hotelListError) {
-    return <div>error</div>;
+  if (hotelsWithRoomsError) {
+    return <StyledSubtitle>Ops... Tivemos um erro </StyledSubtitle>;
   }
 
-  return <>{<Booking hotelList={hotelList} />}</>;
+  if (hotelsWithRoomsLoading) {
+    return <StyledSubtitle>Carregando...</StyledSubtitle>;
+  }
+
+  if (!hotelsWithRooms) {
+    return <StyledSubtitle>Os hotéis do envento ainda não estão disponíveis</StyledSubtitle>;
+  }
+
+  return <Booking hotelsList={hotelsWithRooms} />;
 }
