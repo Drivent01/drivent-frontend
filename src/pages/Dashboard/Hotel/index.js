@@ -9,7 +9,7 @@ export default function Hotel() {
     <>
       {(ticket?.status === 'RESERVED') && (
         <AlertInfoScreen>
-          Sua modalidade de ingresso não inclui hospedagem Prossiga para a escolha de atividades
+          Você precisa ter confirmado pagamento antes de fazer a escolha de hospedagem
         </AlertInfoScreen>
       )}
 
