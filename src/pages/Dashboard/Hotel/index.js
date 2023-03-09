@@ -7,14 +7,14 @@ export default function Hotel({ setShowBooking }) {
 
   return (
     <>
-      {ticket?.status === 'RESERVED' && !ticket?.includesHotel && (
+      {ticket?.status === 'RESERVED' && (
+        <AlertInfoScreen>Você precisa ter confirmado pagamento antes de fazer a escolha de hospedagem</AlertInfoScreen>
+      )}
+
+      {ticket?.status === 'PAID' && !ticket?.includesHotel && (
         <AlertInfoScreen>
           Sua modalidade de ingresso não inclui hospedagem Prossiga para a escolha de atividades
         </AlertInfoScreen>
-      )}
-
-      {ticket?.status === 'RESERVED' && (
-        <AlertInfoScreen>Você precisa ter confirmado pagamento antes de fazer a escolha de hospedagem</AlertInfoScreen>
       )}
 
       {ticket?.status === 'PAID' && ticket?.includesHotel && <>
