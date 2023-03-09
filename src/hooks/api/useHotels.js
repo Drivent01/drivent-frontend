@@ -35,4 +35,19 @@ export default function useHotelById() {
   };
 }
 
+export default function useHotelsWithRooms() {
+  const token = useToken();
+  
+  const {
+    data: hotelsWithRooms,
+    loading: hotelsWithRoomsLoading,
+    error: hotelsWithRoomsError,
+  } = useAsync(() => hotelsApi.getHotelsWithRooms(token));
+
+  return {
+    hotelsWithRooms,
+    hotelsWithRoomsLoading,
+    hotelsWithRoomsError,
+  };
+}
 
