@@ -13,7 +13,7 @@ export default function Hotel() {
         </AlertInfoScreen>
       )}
 
-      {ticket?.status === 'RESERVED' && !ticket?.TicketType.includesHotel && (
+      {ticket?.status === 'PAID' && !ticket?.TicketType.includesHotel && (
         <AlertInfoScreen>
           Sua modalidade de ingresso não inclui hospedagem Prossiga para a escolha de atividades
         </AlertInfoScreen>
