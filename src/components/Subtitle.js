@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Subtitle = styled.h4`
+const StyledSubtitle = styled.h4`
   margin-bottom: 17px;
   font-family: sans-serif !important;
   font-style: normal;
@@ -10,4 +10,4 @@ const Subtitle = styled.h4`
   color: #8E8E8E;
 `;
 
-export default Subtitle;
+export default StyledSubtitle;
