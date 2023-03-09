@@ -7,19 +7,19 @@ export default function Hotel() {
 
   return (
     <>
-      {(!ticket || ticket.status === 'RESERVED') && (
+      {(ticket?.status === 'RESERVED') && (
         <AlertInfoScreen>
           Você precisa ter confirmado pagamento antes de fazer a escolha de hospedagem
         </AlertInfoScreen>
       )}
 
-      {ticket.status === 'RESERVED' && !ticket.TicketType.includesHotel && (
+      {ticket?.status === 'RESERVED' && !ticket?.TicketType.includesHotel && (
         <AlertInfoScreen>
           Sua modalidade de ingresso não inclui hospedagem Prossiga para a escolha de atividades
         </AlertInfoScreen>
       )}
 
-      {ticket.status === 'PAID' && ticket.TicketType.includesHotel &&
+      {ticket?.status === 'PAID' && ticket?.TicketType.includesHotel &&
         <HotelMainScreen />
       }
     </>
