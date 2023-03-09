@@ -2,7 +2,6 @@ import { /* useEffect, */ useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { Title } from '../styles';
-import HotelsSection from './hotelsSection';
 import RoomSection from './roomSection';
 import HotelSection from './hotelsSection';
 import ButtonFinalization from '../../../../components/Payment/ButtonFinalization';
@@ -35,8 +34,16 @@ export default function Booking({ hotelList }) {
 
   return (
     <>
-      {/* {hotelList.map((hotel, index) => {})} */}
-      {selectedHotel && <RoomSection hotel={setSelectedHotel} />}
+      <Title>Escolha de hotel e quarto</Title>
+      <HotelSection hotelList={hotelList} setSelectedHotel={setSelectedHotel} parentSelected={selectedHotel}/>
+      {selectedHotel &&
+        <RoomSection rooms={selectedHotel.Rooms} setRoomId={setRoomId} />
+      }
+      {roomId &&
+        <ButtonFinalization onClick={e => submitBooking(e)}>
+          <p className="title">RESERVAR QUARTO</p>
+        </ButtonFinalization>
+      }
     </>
   );
 }
