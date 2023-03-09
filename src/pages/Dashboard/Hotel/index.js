@@ -1,8 +1,8 @@
 import AlertInfoScreen from '../../../components/AlertInfoScreen';
 import useTicket from '../../../hooks/api/useTicket';
-import Booking from './HotelSection/booking';
+import HotelMainScreen from './HotelSection';
 
-export default function Hotel({ setShowBooking }) {
+export default function Hotel() {
   const { ticket } = useTicket();
 
   return (
