@@ -9,8 +9,7 @@ function HotelCard({
   marginBottom,
   name,
   selectMe = () => {},
-  id,
-  parentSelected,
+  isSelected
 }) {
   function handleClick(e) {
     e.preventDefault();
@@ -18,7 +17,7 @@ function HotelCard({
   }
 
   return (
-    <Container marginBottom={marginBottom} onClick={handleClick} isSelected={id && id === parentSelected?.id}>
+    <Container marginBottom={marginBottom} onClick={handleClick} isSelected={isSelected}>
       <img src={image} alt="hotel imagem" />
 
       <ContentInfo>
