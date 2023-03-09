@@ -3,7 +3,7 @@ import useToken from '../useToken';
 
 import * as bookingApi from '../../services/bookingApi';
 
-export default function useBooking() {
+export default function useSaveBooking() {
   const token = useToken();
 
   const {
