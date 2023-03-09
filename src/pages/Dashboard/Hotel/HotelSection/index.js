@@ -17,5 +17,5 @@ export default function HotelMainScreen() {
     return <StyledSubtitle>Os hotéis do envento ainda não estão disponíveis</StyledSubtitle>;
   }
 
-  return <Booking hotelsList={hotelsWithRooms} />;
+  return <Booking hotelList={hotelsWithRooms} />;
 }
