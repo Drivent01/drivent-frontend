@@ -1,26 +1,25 @@
 import AlertInfoScreen from '../../../components/AlertInfoScreen';
 import useTicket from '../../../hooks/api/useTicket';
-import { Title } from './styles';
+import Booking from './HotelSection/booking';
 
-export default function Hotel() {
+export default function Hotel({ setShowBooking }) {
   const { ticket } = useTicket();
 
   return (
     <>
-      <Title>Escolha de hotel e quarto</Title>
-
-      {ticket?.status === 'RESERVED' &&
+      {ticket?.status === 'RESERVED' && !ticket?.includesHotel && (
         <AlertInfoScreen>
-          Você precisa ter confirmado pagamento antes
-          de fazer a escolha de hospedagem
+          Sua modalidade de ingresso não inclui hospedagem Prossiga para a escolha de atividades
         </AlertInfoScreen>
-      }
+      )}
 
-      {ticket?.status === 'PAID' &&
-        <>
-          <p>Hotel : Em Breve</p>
-        </>
-      }
+      {ticket?.status === 'RESERVED' && (
+        <AlertInfoScreen>Você precisa ter confirmado pagamento antes de fazer a escolha de hospedagem</AlertInfoScreen>
+      )}
+
+      {ticket?.status === 'PAID' && ticket?.includesHotel && <>
+        <Booking />
+      </>}
     </>
   );
 }
