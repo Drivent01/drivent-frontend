@@ -12,36 +12,32 @@ import useBooking from '../../../../hooks/api/useBooking';
 export default function Booking({ hotelList }) {
   const [selectedHotel, setSelectedHotel] = useState(null);
   const { saveBooking } = useSaveBooking();
-  // const { changeBooking } = useChangeBooking();
+  const { changeBooking } = useChangeBooking();
   const { booking, bookingLoading } = useBooking();
-  const [roomId, setRoomId] = useState(1);
+  const [roomId, setRoomId] = useState(null);
   const [bookingId, setBookingId] = useState(null);
-  //const [changeBooking, setChangeBooking] = useState(null);
   const navigate = useNavigate();
 
-  // eslint-disable-next-line
   useEffect(() => {
     try {
       const activeBooking = !bookingLoading && booking;
       if (activeBooking) {
-        setBookingId(activeBooking);
+        setBookingId(activeBooking.id);
       }
     } catch (err) {
-      console.log(err);
+      toast('Houve um erro ao processar a sua reversa');
     }
-  }, [booking]);
+  }, [bookingLoading]);
 
-  /*  console.log(bookingId);
-  console.log(booking); */
   async function submitBooking(e) {
     e.preventDefault();
-
     try {
       if (bookingId) {
+        await changeBooking({ roomId }, bookingId);
       } else if (!bookingId) {
+        await saveBooking({ roomId });
       }
-      const bookingId = await saveBooking(roomId);
-      // setBookingId(bookingId);
+      toast('Informações salvas com sucesso!');
       navigate('review');
     } catch (error) {
       toast('Houve um erro ao processar a sua reversa');

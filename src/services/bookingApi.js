@@ -21,7 +21,7 @@ export async function getBooking(token) {
 }
 
 export async function upsertBooking(body, bookingId, token) {
-  const response = await api.put(`/booking/${bookingId}`, {
+  const response = await api.put(`/booking/${bookingId}`, body, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

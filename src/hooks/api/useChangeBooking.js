@@ -10,7 +10,7 @@ export default function useChangeBooking() {
     loading: changeBookingLoading,
     error: changeBookingError,
     act: changeBooking,
-  } = useAsync((body, bookingId) => bookingApi.upsertBooking(body, bookingId, token));
+  } = useAsync((body, bookingId) => bookingApi.upsertBooking(body, bookingId, token), false);
 
   return {
     changeBookingLoading,

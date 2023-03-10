@@ -10,7 +10,7 @@ export default function useSaveBooking() {
     loading: saveBookingLoading,
     error: saveBookingError,
     act: saveBooking,
-  } = useAsync((body) => bookingApi.postBooking(body, token));
+  } = useAsync((body) => bookingApi.postBooking(body, token), false);
 
   return {
     saveBookingLoading,
