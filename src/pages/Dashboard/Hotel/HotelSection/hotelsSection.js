@@ -56,6 +56,7 @@ export default function HotelsSection({ hotelList, setSelectedHotel, parentSelec
               text02={parseAvailableRoomsQuantity(hotel)}
               selectMe={setSpecificHotel(hotel)}
               parentSelected={parentSelected}
+              isSelected={hotel.id && hotel.id === parentSelected?.id}
             />
           ))}
       </div>

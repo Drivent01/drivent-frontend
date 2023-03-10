@@ -4,7 +4,7 @@ import { ContainerButton } from './styles';
 
 function ButtonFinalization(props) {
   return (
-    <ContainerButton {...props}>
+    <ContainerButton {...props} >
       {props.children}
     </ContainerButton>
   );
