@@ -10,7 +10,7 @@ export async function postBooking(body, token) {
   return response.data;
 }
 
-export async function getTicketType(token) {
+export async function getBooking(token) {
   const response = await api.get('/booking', {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -20,8 +20,8 @@ export async function getTicketType(token) {
   return response.data;
 }
 
-export async function getTicket(token) {
-  const response = await api.get('/booking', {
+export async function upsertBooking(body, bookingId, token) {
+  const response = await api.put(`/booking/${bookingId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
