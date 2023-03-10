@@ -1,27 +1,26 @@
 import { Container, ContentInfo } from './styles';
 
 function HotelCard({
-  subtitle01,
-  subtitle02,
-  text01,
-  image,
-  text02,
-  marginBottom,
-  name,
+  hotel, 
+  subtitle01, 
+  subtitle02, 
+  text01, 
+  image, 
+  text02, 
+  marginBottom, 
   selectMe = () => {},
-  isSelected
-}) {
+  isSelected }) {
   function handleClick(e) {
     e.preventDefault();
     selectMe();
   }
-
+  
   return (
     <Container marginBottom={marginBottom} onClick={handleClick} isSelected={isSelected}>
       <img src={image} alt="hotel imagem" />
 
       <ContentInfo>
-        <h3>{name}</h3>
+        <h3>{hotel}</h3>
         <p className="subTitle">{subtitle01}</p>
         <p className="text">{text01}</p>
 
