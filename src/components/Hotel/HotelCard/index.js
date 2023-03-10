@@ -1,10 +1,22 @@
-import React from 'react';
-
 import { Container, ContentInfo } from './styles';
 
-function HotelCard({ hotel, subtitle01, subtitle02, text01, image, text02, onClick, marginBottom, isSelected }) {
+function HotelCard({
+  hotel, 
+  subtitle01, 
+  subtitle02, 
+  text01, 
+  image, 
+  text02, 
+  marginBottom, 
+  selectMe = () => {},
+  isSelected }) {
+  function handleClick(e) {
+    e.preventDefault();
+    selectMe();
+  }
+  
   return (
-    <Container marginBottom={marginBottom} onClick={onClick} isSelected={isSelected}>
+    <Container marginBottom={marginBottom} onClick={handleClick} isSelected={isSelected}>
       <img src={image} alt="hotel imagem" />
 
       <ContentInfo>

@@ -35,7 +35,7 @@ export default function Booking({ hotelList }) {
   return (
     <>
       <Title>Escolha de hotel e quarto</Title>
-      <HotelSection hotelList={hotelList} setSelectedHotel={setSelectedHotel} />
+      <HotelSection hotelList={hotelList} setSelectedHotel={setSelectedHotel} parentSelected={selectedHotel}/>
       {selectedHotel &&
         <RoomSection rooms={selectedHotel.Rooms} setRoomId={setRoomId} />
       }
