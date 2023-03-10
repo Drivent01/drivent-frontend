@@ -9,7 +9,7 @@ export default function Hotel() {
 
   return (
     <>
-      {(ticket?.status === 'RESERVED') && (
+      {(ticket?.status === 'RESERVED' || !ticket) && (
         <>
           <Title>Escolha de hotel e quarto</Title>
           <AlertInfoScreen>
