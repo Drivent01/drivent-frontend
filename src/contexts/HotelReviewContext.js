@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { getBooking } from '../services/bookingApi';
+import { getBookingApiDataRoom } from '../services/bookingApiDataRoom';
 import { getHotelsWithRooms } from '../services/hotelsApi';
 
 const HotelReviewContext = createContext();
@@ -10,7 +10,7 @@ export function HotelReviewProvider({ children }) {
   const [hotelUser, setHotelUser] = useState([]);
 
   const handleDataBookingUser = async(token) => {
-    const room = await getBooking(token);
+    const room = await getBookingApiDataRoom(token);
     setRoomUser([room]);
 
     const hotels = await getHotelsWithRooms(token);
