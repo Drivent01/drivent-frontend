@@ -13,21 +13,21 @@ export default function Booking({ hotelList }) {
   const [selectedHotel, setSelectedHotel] = useState(null);
   const { saveBooking } = useSaveBooking();
   const { changeBooking } = useChangeBooking();
-  const { booking, bookingLoading } = useBooking();
+  const { booking, bookingLoading, getBooking } = useBooking();
   const [roomId, setRoomId] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  //eslint-disable-next-line
+  useEffect(async () => {
     try {
-      const activeBooking = !bookingLoading && booking;
+      const activeBooking = !bookingLoading && (await getBooking());
       if (activeBooking) {
         setBookingId(activeBooking.id);
+        setSelectedHotel(hotelList.find((hotel) => hotel.id === activeBooking.Room.hotelId));
       }
-    } catch (err) {
-      toast('Houve um erro ao processar a sua reversa');
-    }
-  }, [bookingLoading]);
+    } catch (err) {}
+  }, [bookingId]);
 
   async function submitBooking(e) {
     e.preventDefault();
@@ -40,7 +40,7 @@ export default function Booking({ hotelList }) {
       toast('Informações salvas com sucesso!');
       navigate('review');
     } catch (error) {
-      toast('Houve um erro ao processar a sua reversa');
+      toast('Houve um erro ao processar a sua reserva');
       return;
     }
   }
@@ -49,7 +49,14 @@ export default function Booking({ hotelList }) {
     <>
       <Title>Escolha de hotel e quarto</Title>
       <HotelSection hotelList={hotelList} setSelectedHotel={setSelectedHotel} parentSelected={selectedHotel} />
-      {selectedHotel && <RoomSection key={selectedHotel.id} rooms={selectedHotel.Rooms} setRoomId={setRoomId} />}
+      {selectedHotel && (
+        <RoomSection
+          key={selectedHotel.id}
+          rooms={selectedHotel.Rooms}
+          setRoomId={setRoomId}
+          roomIdFromApi={booking?.Room.id}
+        />
+      )}
       {roomId && (
         <ButtonFinalization onClick={(e) => submitBooking(e)}>
           <p className="title">RESERVAR QUARTO</p>
