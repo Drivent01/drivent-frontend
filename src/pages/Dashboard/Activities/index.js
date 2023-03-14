@@ -1,3 +1,5 @@
+import ActivitiesScreen from './ActivitiesScreen';
+
 export default function Activities() {
-  return 'Atividades: Em breve!';
+  return <ActivitiesScreen />;
 }
