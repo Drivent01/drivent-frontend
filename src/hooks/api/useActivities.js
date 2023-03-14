@@ -4,17 +4,17 @@ import useToken from '../useToken';
 import * as activitiesApi from '../../services/activitiesApi';
 
 export default function useActivities() {
-    const token = useToken();
+  const token = useToken();
 
-    const {
-        data: activities,
-        loading: activitiesLoading,
-        error: activitiesError,
-    } = useAsync(() => activitiesApi.getActivities(token));
+  const {
+    data: activities,
+    loading: activitiesLoading,
+    error: activitiesError,
+  } = useAsync(() => activitiesApi.getActivities(token));
 
-    return {
-        activities,
-        activitiesLoading,
-        activitiesError,
-    };
+  return {
+    activities,
+    activitiesLoading,
+    activitiesError,
+  };
 }
