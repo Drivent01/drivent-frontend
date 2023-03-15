@@ -5,11 +5,22 @@ import ActivityColumn from './ActivityColumn';
 export default function ActivitiesTable(props) {
   const dataFromApi = [
     {
+      id: 4,
+      title: 'Palestra X Principal',
+      vacancies: 0,
+      startsAt: '10:00',
+      endsAt: '11:00',
+      Places: {
+        name: 'Auditório Principal',
+      },
+      userSubscribed: false,
+    },
+    {
       id: 0,
       title: 'Palestra X',
       vacancies: 0,
-      startsAt: '9:00',
-      endsAt: '10:00',
+      startsAt: '13:00',
+      endsAt: '14:00',
       Places: {
         name: 'Auditório Principal',
       },
@@ -27,11 +38,22 @@ export default function ActivitiesTable(props) {
       userSubscribed: false,
     },
     {
+      id: 7,
+      title: 'Palestra Y2',
+      vacancies: 10,
+      startsAt: '10:00',
+      endsAt: '11:00',
+      Places: {
+        name: 'Auditório Lateral',
+      },
+      userSubscribed: false,
+    },
+    {
       id: 2,
       title: 'Minecraft: montando o PC ideal 3',
       vacancies: 10,
       startsAt: '9:00',
-      endsAt: '10:00',
+      endsAt: '11:00',
       Places: {
         name: 'Sala de Workshop',
       },

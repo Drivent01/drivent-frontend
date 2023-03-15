@@ -4,6 +4,7 @@ import { CgEnter } from 'react-icons/cg';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 import { useState } from 'react';
+import dayjs from 'dayjs';
 
 export default function ActivityCard({ activity }) {
   const { title, vacancies, startsAt, endsAt, userSubscribed } = activity;
@@ -49,8 +50,14 @@ export default function ActivityCard({ activity }) {
     );
   }
 
+  function createStartEnd() {
+    const start = parseInt(dayjs(startsAt, 'H').format('H')) - 8;
+    const end = parseInt(dayjs(endsAt, 'H').format('H')) - 8;
+    return `${start} / ${end}`;
+  }
+
   return (
-    <ActivityStyledCard>
+    <ActivityStyledCard startEnd={createStartEnd()}>
       <div className="main-content">
         <h1>{title}</h1>
         <div className="time">
@@ -77,6 +84,7 @@ const ActivityStyledCard = styled.div`
   justify-content: space-between;
   min-height: 79px;
   width: 265px;
+  grid-row: ${({ startEnd }) => startEnd};
   background-color: #f1f1f1;
   border-radius: 5px;
   align-items: center;
@@ -101,7 +109,7 @@ const ActivityStyledCard = styled.div`
   }
   .activity-status {
     width: 60px;
-    height: 60px;
+    min-height: 60px;
     border: 0;
     border-left: 1px solid rgba(0, 0, 0, 0.1);
     :disabled {

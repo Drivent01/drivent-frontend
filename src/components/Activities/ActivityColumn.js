@@ -34,7 +34,9 @@ margin-top: 70px;
   .activity-box-container {
     height: 392px;
     padding: 12px;
-    display: flex;
+    display: grid;
+    grid-template-rows: repeat(13, 80px);
+    gap: 10px;
     scroll-behavior: smooth;
     overflow-y: scroll;
     scrollbar-width: none;
