@@ -5,8 +5,11 @@ export const ContainerButton = styled.button`
   border: none;
   box-sizing: border-box;
 
+  font-family: 'Roboto', sans-serif;
+
   width: ${({ width }) => width ? width : '167px'};
   height: 37px;
+  margin-right: ${({ margin }) => margin ? margin : ''};
   cursor: pointer;
 
   background-color: ${({ isSelected }) => isSelected ? '#FFD37D' : '#E0E0E0'};
