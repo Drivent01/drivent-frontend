@@ -8,7 +8,7 @@ export default function Activities({ activities }) {
   return (
     <>
       <ActivitiesByDay activities={activities} setDay={setDay} day={day} />
-      <ActivitiesTable day={day} />
+      <ActivitiesTable dayAcitivities={day} />
     </>
   );
 }

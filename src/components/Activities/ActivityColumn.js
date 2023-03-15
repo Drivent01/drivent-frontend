@@ -6,7 +6,7 @@ export default function ActivityColumn(props) {
 
   return (
     <ActivityStyledColumn>
-      <h1 className='place'>{place.name}</h1>
+      <h1 className="place">{place.name}</h1>
       <div className="activity-box-container">
         {place.activities.map((activity) => (
           <ActivityCard activity={activity} />
@@ -17,7 +17,7 @@ export default function ActivityColumn(props) {
 }
 
 const ActivityStyledColumn = styled.div`
-margin-top: 70px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,10 +29,11 @@ margin-top: 70px;
     font-size: 17px;
     line-height: 20px;
     text-align: center;
-    color: #7B7B7B;
+    color: #7b7b7b;
   }
   .activity-box-container {
     height: 392px;
+    min-width: 288px;
     padding: 12px;
     display: grid;
     grid-template-rows: repeat(13, 80px);

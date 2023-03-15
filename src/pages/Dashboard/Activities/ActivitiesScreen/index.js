@@ -4,7 +4,6 @@ import StyledSubtitle from '../../../../components/Subtitle';
 
 export default function ActivitiesScreen() {
   const { activities, activitiesLoading, activitiesError } = useActivities();
-
   if (activitiesLoading) {
     return <StyledSubtitle>Carregando...</StyledSubtitle>;
   }
