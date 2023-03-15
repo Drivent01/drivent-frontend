@@ -16,7 +16,7 @@ const days = [
     day: 'Domingo, 20/03'
   }];
 
-export default function ActivitiesByDay({ activities, setDay }) {
+export default function ActivitiesByDay({ activities, setDay, day }) {
   const [selections, setSelections] = useState(days.map((_) => false));
 
   const fridayActivities = activities.filter(a => a.day === '2022-03-18T03:00:00.000Z');
@@ -40,7 +40,7 @@ export default function ActivitiesByDay({ activities, setDay }) {
 
   return (
     <>
-      <StyledSubtitle>Primeiro, filtre pelo dia do evento: </StyledSubtitle>
+      {!day && <StyledSubtitle>Primeiro, filtre pelo dia do evento: </StyledSubtitle>}
       {days.map((d, i) => (
         <ButtonFinalization
           key={d.id}
