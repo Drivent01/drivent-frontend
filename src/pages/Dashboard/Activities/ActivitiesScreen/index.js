@@ -6,5 +6,5 @@ export default function ActivitiesScreen() {
       <div>atividades aqui</div>
       <ActivitiesTable />
     </>
-  );
+    );
 }
