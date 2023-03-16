@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import ActivityColumn from './ActivityColumn';
+import ActivityColumn from '../ActivityColumn/ActivityColumn';
+import { ActivityStyledTable } from './styles';
 
 export default function ActivitiesTable({ dayAcitivities }) {
   const [places, setplaces] = useState([]);
@@ -33,14 +33,9 @@ export default function ActivitiesTable({ dayAcitivities }) {
 
   return (
     <ActivityStyledTable>
-      {places?.map((place, index) => (
+      {places?.map((place) => (
         <ActivityColumn place={place} key={place.name} />
       ))}
     </ActivityStyledTable>
   );
 }
-
-const ActivityStyledTable = styled.div`
-  display: flex;
-  width: 100%;
-`;

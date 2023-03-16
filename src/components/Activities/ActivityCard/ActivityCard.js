@@ -1,13 +1,13 @@
 import { BiCheckCircle } from 'react-icons/bi';
-import CircleOutline from '../../assets/circle-outlined.png';
+import CircleOutline from '../../../assets/circle-outlined.png';
 import { CgEnter } from 'react-icons/cg';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 import { useContext, useState } from 'react';
-import useSaveActivities from '../../hooks/api/useSaveActivities';
+import useSaveActivities from '../../../hooks/api/useSaveActivities';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
-import ActivityContext from '../../contexts/ActivityContext';
+import ActivityContext from '../../../contexts/ActivityContext';
 
 export default function ActivityCard({ activity }) {
   const { title, vacancies, startsAt, endsAt, id, userSubscribed: userSubscribedFromApi } = activity;
