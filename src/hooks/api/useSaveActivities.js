@@ -3,11 +3,11 @@ import useToken from '../useToken';
 
 import * as activitiesApi from '../../services/activitiesApi';
 
-export default function useActivities() {
+export default function useSaveActivities() {
   const token = useToken();
 
   const {
-    data: saveActivities,
+    act: saveActivities,
     loading: saveActivitiesLoading,
     error: saveActivitiesError,
   } = useAsync((body) => activitiesApi.activitySubscription(body, token), false);

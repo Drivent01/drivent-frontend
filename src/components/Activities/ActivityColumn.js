@@ -36,7 +36,7 @@ const ActivityStyledColumn = styled.div`
     min-width: 288px;
     padding: 12px;
     display: grid;
-    grid-template-rows: repeat(13, 80px);
+    grid-template-rows: repeat(26, 35px);
     gap: 10px;
     scroll-behavior: smooth;
     overflow-y: scroll;

@@ -4,11 +4,13 @@ import { CgEnter } from 'react-icons/cg';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 import { useState } from 'react';
+import useSaveActivities from '../../hooks/api/useSaveActivities';
 import dayjs from 'dayjs';
 
 export default function ActivityCard({ activity }) {
-  const { title, vacancies, startsAt, endsAt, userSubscribed } = activity;
+  const { title, vacancies, startsAt, endsAt, userSubscribed, id } = activity;
   const [loading, setLoading] = useState(false);
+  const { saveActivities } = useSaveActivities();
 
   function activityStatus() {
     if (loading)
@@ -51,9 +53,18 @@ export default function ActivityCard({ activity }) {
   }
 
   function createStartEnd() {
-    const start = parseInt(dayjs(startsAt, 'H').format('H')) - 8;
-    const end = parseInt(dayjs(endsAt, 'H').format('H')) - 8;
+    const start = (parseInt(dayjs(startsAt, 'H').format('H')) * 2 - 17) + parseInt(dayjs(startsAt, 'H:mm').format('mm')) / 30;
+    const end = (parseInt(dayjs(endsAt, 'H').format('H')) * 2 - 17)  + parseInt(dayjs(endsAt, 'H:mm').format('mm')) / 30;
+    console.log(start, end, parseInt(dayjs(startsAt, 'H:mm').format('mm')) / 30);
     return `${start} / ${end}`;
+  }
+
+  async function handleSubscribe(e) {
+    e.preventDefault();
+    try {
+    } catch (err) {
+      await saveActivities({ activityId: id });
+    }
   }
 
   return (
@@ -66,13 +77,7 @@ export default function ActivityCard({ activity }) {
           </h2>
         </div>
       </div>
-      <button
-        className="activity-status"
-        onClick={() => {
-          setLoading(true);
-        }}
-        disabled={vacancies === 0}
-      >
+      <button className="activity-status" onClick={handleSubscribe} disabled={vacancies === 0}>
         <div>{activityStatus()}</div>
       </button>
     </ActivityStyledCard>
@@ -84,6 +89,7 @@ const ActivityStyledCard = styled.div`
   justify-content: space-between;
   min-height: 79px;
   width: 265px;
+  grid-column: 1;
   grid-row: ${({ startEnd }) => startEnd};
   background-color: #f1f1f1;
   border-radius: 5px;
