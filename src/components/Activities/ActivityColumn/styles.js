@@ -1,22 +1,6 @@
 import styled from 'styled-components';
-import ActivityCard from './ActivityCard';
 
-export default function ActivityColumn(props) {
-  const { place } = props;
-
-  return (
-    <ActivityStyledColumn>
-      <h1 className="place">{place.name}</h1>
-      <div className="activity-box-container">
-        {place.activities.map((activity) => (
-          <ActivityCard activity={activity} key={activity.id} />
-        ))}
-      </div>
-    </ActivityStyledColumn>
-  );
-}
-
-const ActivityStyledColumn = styled.div`
+export const ActivityStyledColumn = styled.div`
   margin-top: 70px;
   display: flex;
   flex-direction: column;
