@@ -8,8 +8,8 @@ export default function ActivityColumn(props) {
     <ActivityStyledColumn>
       <h1 className="place">{place.name}</h1>
       <div className="activity-box-container">
-        {place.activities.map((activity, id) => (
-          <ActivityCard activity={activity} key={id} />
+        {place.activities.map((activity) => (
+          <ActivityCard activity={activity} key={activity.id} />
         ))}
       </div>
     </ActivityStyledColumn>

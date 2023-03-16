@@ -1,4 +1,5 @@
 import AlertInfoScreen from '../../../components/AlertInfoScreen';
+import { ActivityProvider } from '../../../contexts/ActivityContext';
 import useTicket from '../../../hooks/api/useTicket';
 import ActivitiesScreen from './ActivitiesScreen';
 import { Title } from './styles';
@@ -29,7 +30,9 @@ export default function Activities() {
       {ticket?.status === 'PAID' && !ticket?.TicketType.isRemote && (
         <>
           <Title>Escolha de atividades</Title>
-          <ActivitiesScreen />
+          <ActivityProvider>
+            <ActivitiesScreen />
+          </ActivityProvider>
         </>
       )}
     </>

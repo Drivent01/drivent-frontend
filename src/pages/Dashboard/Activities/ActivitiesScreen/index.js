@@ -1,9 +1,13 @@
 import Activities from './Activities';
 import useActivities from '../../../../hooks/api/useActivities';
 import StyledSubtitle from '../../../../components/Subtitle';
+import { useContext } from 'react';
+import ActivityContext from '../../../../contexts/ActivityContext';
 
 export default function ActivitiesScreen() {
-  const { activities, activitiesLoading, activitiesError } = useActivities();
+  const { activitiesLoading, activitiesError } = useActivities();
+  const { activities } = useContext(ActivityContext);
+
   if (activitiesLoading) {
     return <StyledSubtitle>Carregando...</StyledSubtitle>;
   }

@@ -34,7 +34,7 @@ export default function ActivitiesTable({ dayAcitivities }) {
   return (
     <ActivityStyledTable>
       {places?.map((place, index) => (
-        <ActivityColumn place={place} key={index} />
+        <ActivityColumn place={place} key={place.name} />
       ))}
     </ActivityStyledTable>
   );
