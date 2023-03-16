@@ -55,7 +55,6 @@ export default function ActivityCard({ activity }) {
   function createStartEnd() {
     const start = (parseInt(dayjs(startsAt, 'H').format('H')) * 2 - 17) + parseInt(dayjs(startsAt, 'H:mm').format('mm')) / 30;
     const end = (parseInt(dayjs(endsAt, 'H').format('H')) * 2 - 17)  + parseInt(dayjs(endsAt, 'H:mm').format('mm')) / 30;
-    console.log(start, end, parseInt(dayjs(startsAt, 'H:mm').format('mm')) / 30);
     return `${start} / ${end}`;
   }
 

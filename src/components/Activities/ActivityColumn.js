@@ -8,8 +8,8 @@ export default function ActivityColumn(props) {
     <ActivityStyledColumn>
       <h1 className="place">{place.name}</h1>
       <div className="activity-box-container">
-        {place.activities.map((activity) => (
-          <ActivityCard activity={activity} />
+        {place.activities.map((activity, id) => (
+          <ActivityCard activity={activity} key={id} />
         ))}
       </div>
     </ActivityStyledColumn>
@@ -40,9 +40,20 @@ const ActivityStyledColumn = styled.div`
     gap: 10px;
     scroll-behavior: smooth;
     overflow-y: scroll;
-    scrollbar-width: none;
-    ::-webkit-scrollbar {
-      display: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+      ::-webkit-scrollbar{
+      width: 6px;
+      height: 12px;
+    }
+
+    ::-webkit-scrollbar-track{
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background: rgb(212, 210, 210);
+      border-radius: 1.5px;
     }
     flex-direction: column;
     border: 1px solid rgba(0, 0, 0, 0.1);
