@@ -37,8 +37,8 @@ export default function ActivityCard({ activity }) {
     else if (userSubscribed) {
       return (
         <>
-          <BiCheckCircle />
-          <h2>Inscrito</h2>
+          <BiCheckCircle style={{ color: '#078632', width: '20px', height: '20px' }} />
+          <h2 style={{ color: '#078632' }}>Inscrito</h2>
         </>
       );
     } else if (vacancies === 0) {
@@ -80,7 +80,7 @@ export default function ActivityCard({ activity }) {
   }
 
   return (
-    <ActivityStyledCard startEnd={createStartEnd()}>
+    <ActivityStyledCard startEnd={createStartEnd()} subscribed={userSubscribed}>
       <div className="main-content">
         <h1>{title}</h1>
         <div className="time">
@@ -104,14 +104,14 @@ export default function ActivityCard({ activity }) {
 const ActivityStyledCard = styled.div`
   display: flex;
   justify-content: space-between;
-  min-height: 79px;
+  min-height: 80px;
   width: 265px;
   grid-column: 1;
   grid-row: ${({ startEnd }) => startEnd};
-  background-color: #f1f1f1;
+  background-color: ${({ subscribed }) => subscribed ? '#D0FFDB' : '#f1f1f1'};
   border-radius: 5px;
   align-items: center;
-  border: 10px solid #f1f1f1;
+  border: 10px solid ${({ subscribed }) => subscribed ? '#D0FFDB' : '#f1f1f1'};;
   .main-content {
     height: 100%;
     .time {
@@ -132,7 +132,8 @@ const ActivityStyledCard = styled.div`
   }
   .activity-status {
     width: 60px;
-    min-height: 60px;
+    min-height: 100%;
+    background-color: ${({ subscribed }) => subscribed ? '#D0FFDB' : '#f1f1f1'};
     border: 0;
     border-left: 1px solid rgba(0, 0, 0, 0.1);
     :disabled {
