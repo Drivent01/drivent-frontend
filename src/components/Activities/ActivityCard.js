@@ -3,14 +3,21 @@ import CircleOutline from '../../assets/circle-outlined.png';
 import { CgEnter } from 'react-icons/cg';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSaveActivities from '../../hooks/api/useSaveActivities';
 import dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 export default function ActivityCard({ activity }) {
-  const { title, vacancies, startsAt, endsAt, userSubscribed, id } = activity;
+  const { title, vacancies, startsAt, endsAt, id, userSubscribed: userSubscribedFromApi } = activity;
+  const [userSubscribed, setUserSubscribed] = useState(activity.userSubscribed); // [userSubscribed, setUserSubscribed
   const [loading, setLoading] = useState(false);
   const { saveActivities } = useSaveActivities();
+
+  useEffect(() => {
+    setUserSubscribed(userSubscribedFromApi);
+    console.log(id, userSubscribed, userSubscribedFromApi);
+  }, [id, userSubscribed]);
 
   function activityStatus() {
     if (loading)
@@ -21,7 +28,7 @@ export default function ActivityCard({ activity }) {
             width="20"
             color="#4fa94d"
             ariaLabel="tail-spin-loading"
-            radius="5"
+            radius={5}
             type="Puff"
             wrapperStyle={{}}
             wrapperClass=""
@@ -30,18 +37,18 @@ export default function ActivityCard({ activity }) {
           <h2>Carregando...</h2>
         </>
       );
-    if (vacancies === 0)
-      return (
-        <>
-          <img src={CircleOutline} alt="" />
-          <h2>Esgotado</h2>
-        </>
-      );
     if (userSubscribed)
       return (
         <>
           <BiCheckCircle />
           <h2>Inscrito</h2>
+        </>
+      );
+    if (vacancies === 0)
+      return (
+        <>
+          <img src={CircleOutline} alt="" />
+          <h2>Esgotado</h2>
         </>
       );
     return (
@@ -53,16 +60,23 @@ export default function ActivityCard({ activity }) {
   }
 
   function createStartEnd() {
-    const start = (parseInt(dayjs(startsAt, 'H').format('H')) * 2 - 17) + parseInt(dayjs(startsAt, 'H:mm').format('mm')) / 30;
-    const end = (parseInt(dayjs(endsAt, 'H').format('H')) * 2 - 17)  + parseInt(dayjs(endsAt, 'H:mm').format('mm')) / 30;
+    const start =
+      parseInt(dayjs(startsAt, 'H').format('H')) * 2 - 17 + parseInt(dayjs(startsAt, 'H:mm').format('mm')) / 30;
+    const end = parseInt(dayjs(endsAt, 'H').format('H')) * 2 - 17 + parseInt(dayjs(endsAt, 'H:mm').format('mm')) / 30;
     return `${start} / ${end}`;
   }
 
   async function handleSubscribe(e) {
     e.preventDefault();
+    setLoading(true);
     try {
-    } catch (err) {
       await saveActivities({ activityId: id });
+      setUserSubscribed(!userSubscribed);
+      setLoading(false);
+      toast('Inscrição realizada com sucesso!');
+    } catch (err) {
+      setLoading(false);
+      toast('Problema na inscrição!');
     }
   }
 
@@ -76,7 +90,7 @@ export default function ActivityCard({ activity }) {
           </h2>
         </div>
       </div>
-      <button className="activity-status" onClick={handleSubscribe} disabled={vacancies === 0}>
+      <button className="activity-status" onClick={handleSubscribe} disabled={vacancies === 0 && !userSubscribed}>
         <div>{activityStatus()}</div>
       </button>
     </ActivityStyledCard>
