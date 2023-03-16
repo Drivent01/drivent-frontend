@@ -6,10 +6,10 @@ export default function ActivityColumn(props) {
 
   return (
     <ActivityStyledColumn>
-      <h1 className='place'>{place.name}</h1>
+      <h1 className="place">{place.name}</h1>
       <div className="activity-box-container">
         {place.activities.map((activity) => (
-          <ActivityCard activity={activity} />
+          <ActivityCard activity={activity} key={activity.id} />
         ))}
       </div>
     </ActivityStyledColumn>
@@ -17,7 +17,7 @@ export default function ActivityColumn(props) {
 }
 
 const ActivityStyledColumn = styled.div`
-margin-top: 70px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,17 +29,31 @@ margin-top: 70px;
     font-size: 17px;
     line-height: 20px;
     text-align: center;
-    color: #7B7B7B;
+    color: #7b7b7b;
   }
   .activity-box-container {
     height: 392px;
+    min-width: 288px;
     padding: 12px;
-    display: flex;
+    display: grid;
+    grid-template-rows: repeat(26, 35px);
+    gap: 10px;
     scroll-behavior: smooth;
     overflow-y: scroll;
-    scrollbar-width: none;
-    ::-webkit-scrollbar {
-      display: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+      ::-webkit-scrollbar{
+      width: 6px;
+      height: 12px;
+    }
+
+    ::-webkit-scrollbar-track{
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background: rgb(212, 210, 210);
+      border-radius: 1.5px;
     }
     flex-direction: column;
     border: 1px solid rgba(0, 0, 0, 0.1);

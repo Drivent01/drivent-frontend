@@ -1,48 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ActivityColumn from './ActivityColumn';
 
-export default function ActivitiesTable(props) {
-  const dataFromApi = [
-    {
-      id: 0,
-      title: 'Palestra X',
-      vacancies: 0,
-      startsAt: '9:00',
-      endsAt: '10:00',
-      Places: {
-        name: 'Auditório Principal',
-      },
-      userSubscribed: false,
-    },
-    {
-      id: 1,
-      title: 'Palestra Y',
-      vacancies: 10,
-      startsAt: '9:00',
-      endsAt: '10:00',
-      Places: {
-        name: 'Auditório Lateral',
-      },
-      userSubscribed: false,
-    },
-    {
-      id: 2,
-      title: 'Minecraft: montando o PC ideal 3',
-      vacancies: 10,
-      startsAt: '9:00',
-      endsAt: '10:00',
-      Places: {
-        name: 'Sala de Workshop',
-      },
-      userSubscribed: false,
-    },
-  ];
+export default function ActivitiesTable({ dayAcitivities }) {
+  const [places, setplaces] = useState([]);
 
-  const [places, setplaces] = useState(parseActivities(dataFromApi));
+  useEffect(() => {
+    setplaces(parseActivities(dayAcitivities));
+  }, [dayAcitivities]);
 
   function parseActivities(activities) {
-    const places = [];
+    const places = [
+      { name: 'Auditório Principal', activities: [] },
+      { name: 'Auditório Lateral', activities: [] },
+      { name: 'Sala de Workshop', activities: [] },
+    ];
+    if (!activities) return [];
     activities.forEach((activity) => {
       const { Places } = activity;
       const placeIndex = places.findIndex((place) => place.name === Places.name);
@@ -61,7 +34,7 @@ export default function ActivitiesTable(props) {
   return (
     <ActivityStyledTable>
       {places?.map((place, index) => (
-        <ActivityColumn place={place} key={index} />
+        <ActivityColumn place={place} key={place.name} />
       ))}
     </ActivityStyledTable>
   );
@@ -70,5 +43,4 @@ export default function ActivitiesTable(props) {
 const ActivityStyledTable = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
 `;
